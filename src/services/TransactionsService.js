@@ -156,7 +156,6 @@ class TransactionsService {
         }),
       };
     } catch (error) {
-      console.log(error)
       await connection.rollback();
       throw error;
     } finally {

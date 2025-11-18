@@ -52,7 +52,6 @@ class TransactionsController {
 
       res.status(result.httpCode).json(result.body);
     } catch (error) {
-      console.log(error)
       next(error);
     }
   };
