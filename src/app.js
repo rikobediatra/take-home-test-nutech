@@ -4,7 +4,7 @@ const rateLimit = require('express-rate-limit');
 const morgan = require('morgan');
 const cors = require('cors');
 const routes = require('./routes');
-const errorHandler = require('./middlewares/errorHandler');
+const errorHandler = require('./middlewares/ErrorHandler');
 
 const app = express();
 

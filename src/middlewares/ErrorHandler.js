@@ -1,6 +1,6 @@
 const ApiResponse = require('../utils/ApiResponse');
 
-function errorHandler(err, req, res, next) {
+function ErrorHandler(err, req, res, next) {
   if (err.statusCode && err.statusMessage) {
     const errorResponse = {
       status: err.statusCode,
@@ -13,4 +13,4 @@ function errorHandler(err, req, res, next) {
   return res.status(500).json(ApiResponse.error(500, 'Internal server error'));
 }
 
-module.exports = errorHandler;
+module.exports = ErrorHandler;
