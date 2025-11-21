@@ -20,6 +20,14 @@ class TransactionsRepository {
     return result;
   }
 
+  async initBalance(idMembership, amount, connection) {
+    const result = await connection.query(
+      'INSERT INTO membership_balance (idMembership, balance) VALUES (?, ?)',
+      [idMembership, amount]
+    );
+    return result;
+  }
+
   async deductBalance(idMembership, amount, connection) {
     const [result] = await connection.query(
       'UPDATE membership_balance SET balance = balance - ? WHERE idMembership = ?',

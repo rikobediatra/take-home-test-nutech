@@ -68,6 +68,19 @@ class TransactionsService {
       );
       const idBalance = membershipBalance?.idBalance ?? null;
 
+      if (!idBalance) {
+        await this.transactionsRepository.initBalance(user.idMembership, amount, connection);
+        await connection.commit();
+
+        return {
+          httpCode: 200,
+          body: ApiResponse.success({
+            message: 'Top Up Balance berhasil',
+            data: { balance: amount },
+          }),
+        };
+      }
+
       await Promise.all([
         this.transactionsRepository.updateBalance(user.idMembership, amount, connection),
         this.transactionsRepository.insertTransaction({ idBalance, amount, connection }),
